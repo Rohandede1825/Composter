@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.jsx
+import React from 'react';
+import Card from './components/Card';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="min-h-screen bg-[#F6F9F6] p-6 font-sans">
+      <div className="bg-white rounded-2xl p-6 shadow-md">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h1 className="text-2xl font-bold text-green-700">Greya Smart Composter</h1>
+            <p className="text-gray-500 text-sm">A Smart IoT-Enabled Device for On-Site Wet Waste Processing</p>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white">
+            <i className="fas fa-user"></i>
+          </div>
+        </div>
 
-export default App
+        {/* Date Range and Report */}
+        <div className="flex justify-between items-center flex-wrap gap-2 mb-6">
+          <div className="flex gap-2 items-center">
+            <label className="text-gray-700 font-medium">Start Date:</label>
+            <input type="date" className="border px-2 py-1 rounded-md" defaultValue="2025-05-28" />
+            <label className="text-gray-700 font-medium">End Date:</label>
+            <input type="date" className="border px-2 py-1 rounded-md" />
+          </div>
+          <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+            Generate Report
+          </button>
+        </div>
+
+        {/* Cards Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <Card label="Humidity" value="50%" avg="3.33" icon="🌿" chartType="line" />
+          <Card label="Temperature" value="30,4°C" avg="2.03" icon="🌡️" chartType="bar" />
+          <Card label="pH" value="5,4" avg="0.36" icon="🌡️" chartType="pie" />
+          <Card label="H₂S" value="--" avg="NaN" icon="🧪" chartType="line" />
+          <Card label="PH" value="--" avg="35.13" icon="🧪" chartType="line" />
+          <Card label="Methane" value="--" avg="435.13" icon="🌡️" chartType="line" />
+        </div>
+      </div>
+    </div>
+  );
+}
